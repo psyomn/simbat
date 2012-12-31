@@ -12,7 +12,7 @@ namespace simbat.datasource
 	public class DbRegistry
 	{
 		#region Member Variables
-		private static string     mDbPath = "simbat.db";
+		private static string     mDbPath = "URI=file:simbat.db";
 		private static DbRegistry mInstance = null; 
 		private static object     mLock = new object();
 		private IDbConnection     mConnection;

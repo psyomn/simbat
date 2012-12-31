@@ -3,7 +3,10 @@ using System;
 namespace simbat
 {
 	/// <summary>
-	/// Entity.
+	/// Entity. Try keeping the data stuff here so that we do the least
+	/// work for mapping and TDGs. 
+	/// 
+	/// In other words, subclasses should really just focus on behavior.
 	/// </summary>
 	public class Entity
 	{

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 
 /* User */
 using simbat.datasource;
@@ -29,6 +30,25 @@ namespace simbat.technical
 	/// </summary>
 	public class TableManager
 	{
+		#region Member Variables
+		private static string TABLE_NAME = "schema_histories";
+
+		private static string CREATE = 
+			"CREATE TABLE IF NOT EXISTS" + TABLE_NAME + " ("
+			+ "version_number long"
+			+ "timestamp      long);";
+
+		private static string INSERT = 
+			"INSERT INTO " + TABLE_NAME 
+			+ "(version_number,timestamp)"
+			+ "VALUES (@given_version_number, @given_timestamp)";
+
+		private static string TABLE_EXISTS = 
+			"SELECT name FROM sqlite_master WHERE type='table' AND name='" 
+			+ TABLE_NAME + "'; ";
+
+		#endregion
+
 		/// <summary>
 		/// Keep this hidden.
 		/// Initializes a new instance of the <see cref="simbat.technical.TableManager"/> class.
@@ -42,9 +62,41 @@ namespace simbat.technical
 		/// </summary>
 		public static void run()
 		{
+			if (databaseExists())
+			{
+				Console.WriteLine("[TABLEMANAGER] Database Exists!");
+			}
 			Console.WriteLine("[TABLEMANAGER] Completed successfully.");
 		}
 
+		/// <summary>
+		/// Databases the exists.
+		/// </summary>
+		/// <returns>
+		/// The exists.
+		/// </returns>
+		private static bool databaseExists()
+		{
+			IDataReader reader; 
+			IDbCommand command; 
+			bool found = false; 
+
+			command = DbRegistry
+				.Instance
+				.Connection
+				.CreateCommand();
+
+			command.CommandText = TABLE_EXISTS;
+			reader = command.ExecuteReader();
+
+			while(reader.Read()){
+				found = true; 
+			}
+
+			return found; 
+		}
+
+		#region SQL Stuff
 		/// <summary>
 		/// Gets the versions.
 		/// </summary>
@@ -57,6 +109,7 @@ namespace simbat.technical
 
 			return null;
 		}
+		#endregion
 	}
 
 }
