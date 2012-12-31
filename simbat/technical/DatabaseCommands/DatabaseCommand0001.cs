@@ -1,4 +1,5 @@
 using System;
+using System.Data;
 
 /* User */
 using simbat.datasource;
@@ -10,10 +11,11 @@ namespace simbat.technical.dbcommands
 	/// 
 	/// This creates the very first table structures.
 	/// </summary>
-	public class DatabaseCommand0001
+	public class DatabaseCommand0001 : simbat.technical.dbcommands.DatabaseCommand
 	{
+		#region SQL 
 		private static string CREATE = 
-			"CREATE TABLE entities IF NOT EXISTS ("
+			"CREATE TABLE entities ("
 		    + "id         long,"
 			+ "name       varchar(50),"
 			+ "strength   int,"
@@ -21,12 +23,29 @@ namespace simbat.technical.dbcommands
 			+ "speed      int,"
 			+ "distortion float"
 			+ "); ";
+		/// <summary>
+		/// The identifier. Should match the class name.
+		/// </summary>
+		private static long mID = 1; 
+		#endregion
 
-		protected DatabaseCommand0001 ()
+		/// <summary>
+		/// Initializes a new instance of the <see cref="simbat.technical.dbcommands.DatabaseCommand0001"/> class.
+		/// </summary>
+		public DatabaseCommand0001 ()
 		{
 
-		}
+		}		
 
+		#region implemented abstract members of simbat.technical.dbcommands.DatabaseCommand
+		public override void run ()
+		{
+			IDbCommand command;
+			command = DbRegistry.Instance.Connection.CreateCommand();
+			command.CommandText = CREATE;
+			command.ExecuteNonQuery();
+		}
+		#endregion
 	}
 
 }

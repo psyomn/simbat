@@ -8,6 +8,8 @@ namespace simbat.technical.dbcommands
 		public DatabaseCommand ()
 		{
 		}
+
+		public abstract void run();
 	}
 }
 

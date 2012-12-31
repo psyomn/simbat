@@ -1,9 +1,11 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 
 /* User */
 using simbat.datasource;
+using simbat.technical.dbcommands;
 
 namespace simbat.technical
 {
@@ -34,7 +36,7 @@ namespace simbat.technical
 		private static string TABLE_NAME = "schema_histories";
 
 		private static string CREATE = 
-			"CREATE TABLE IF NOT EXISTS" + TABLE_NAME + " ("
+			"CREATE TABLE " + TABLE_NAME + " ("
 			+ "version_number long"
 			+ "timestamp      long);";
 
@@ -46,6 +48,11 @@ namespace simbat.technical
 		private static string TABLE_EXISTS = 
 			"SELECT name FROM sqlite_master WHERE type='table' AND name='" 
 			+ TABLE_NAME + "'; ";
+
+		private static string SELECT_ALL_VERSIONS =
+			"SELECT version_number FROM " + TABLE_NAME + ";";
+
+		private static Dictionary<long,DatabaseCommand> mVersions = null;
 
 		#endregion
 
@@ -62,11 +69,55 @@ namespace simbat.technical
 		/// </summary>
 		public static void run()
 		{
-			if (databaseExists())
+			List<long> processedVersions = null; 
+			List<long> toAlter = new List<long>();
+
+			if (tableManagerExists())
 			{
-				Console.WriteLine("[TABLEMANAGER] Database Exists!");
+				Console.WriteLine("TableManager configurations exist!");
 			}
-			Console.WriteLine("[TABLEMANAGER] Completed successfully.");
+			else
+			{
+				createTableManager();
+				Console.WriteLine("Created TableManager configuration table");
+			}
+
+			if (null == mVersions)
+				setupVersionHash();
+
+			processedVersions = GetVersions();
+
+			/* What versions do we know about */
+			foreach(long k in processedVersions)
+			{
+				if (!mVersions.ContainsKey(k))
+					toAlter.Add(k);
+			}
+
+			toAlter.Sort();
+
+			foreach(long id in toAlter)
+			{
+				mVersions[id].run ();
+			}
+
+			/* No longer need */
+			mVersions.Clear();
+			mVersions = null;
+
+			Console.WriteLine("Completed successfully.");
+		}
+
+		#region Services 
+
+		/// <summary>
+		/// Setups the version hash.
+		/// </summary>
+		private static void setupVersionHash()
+		{
+			mVersions = new Dictionary<long,DatabaseCommand>(); 
+
+			mVersions[1] = new DatabaseCommand0001();
 		}
 
 		/// <summary>
@@ -75,7 +126,7 @@ namespace simbat.technical
 		/// <returns>
 		/// The exists.
 		/// </returns>
-		private static bool databaseExists()
+		private static bool tableManagerExists()
 		{
 			IDataReader reader; 
 			IDbCommand command; 
@@ -96,6 +147,8 @@ namespace simbat.technical
 			return found; 
 		}
 
+		#endregion
+
 		#region SQL Stuff
 		/// <summary>
 		/// Gets the versions.
@@ -105,9 +158,73 @@ namespace simbat.technical
 		/// </returns>
 		private static List<long> GetVersions()
 		{
-			// TODO
+			IDataReader reader; 
+			IDbCommand command; 
+			List<long> versions = new List<long>(); 
 
-			return null;
+			command = DbRegistry
+				.Instance
+				.Connection
+				.CreateCommand();
+
+			command.CommandText = SELECT_ALL_VERSIONS;
+
+			reader = command.ExecuteReader();
+
+			while(reader.Read())
+			{
+				versions.Add(long.Parse(reader.GetString(0)));
+			}
+
+			return versions;
+		}
+
+		/// <summary>
+		/// Creates the table manager.
+		/// </summary>
+		private static void createTableManager()
+		{
+			IDbCommand command; 
+
+			command = DbRegistry
+				.Instance
+				.Connection
+				.CreateCommand();
+
+			command.CommandText = CREATE;
+			command.ExecuteNonQuery();
+		}
+
+		/// <summary>
+		/// Inserts the version.
+		/// </summary>
+		/// <param name='iVersion'>
+		/// I version.
+		/// </param>
+		private static void insertVersion(long iVersion)
+		{
+			IDbCommand command; 
+			IDbDataParameter parameter; 
+
+			command = DbRegistry
+				.Instance
+				.Connection
+				.CreateCommand();
+
+			command.CommandText = INSERT;
+
+			parameter =  command.CreateParameter(); 
+			parameter.ParameterName = "@given_version_number"; 
+			parameter.Value = iVersion;
+			command.Parameters.Add (parameter);
+
+			parameter = command.CreateParameter();
+			parameter.ParameterName = "@given_timestamp"; 
+			parameter.Value = (DateTime.UtcNow - new DateTime(1970,1,1,0,0,0)).TotalSeconds;
+			command.Parameters.Add (parameter);
+
+			command.Prepare();
+			command.ExecuteNonQuery();
 		}
 		#endregion
 	}
