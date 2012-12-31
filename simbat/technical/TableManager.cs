@@ -37,13 +37,13 @@ namespace simbat.technical
 
 		private static string CREATE = 
 			"CREATE TABLE " + TABLE_NAME + " ("
-			+ "version_number long"
+			+ "version_number long,"
 			+ "timestamp      long);";
 
 		private static string INSERT = 
-			"INSERT INTO " + TABLE_NAME 
+			@"INSERT INTO " + TABLE_NAME 
 			+ "(version_number,timestamp)"
-			+ "VALUES (@given_version_number, @given_timestamp)";
+			+ "VALUES (@given_version_number, @given_timestamp);";
 
 		private static string TABLE_EXISTS = 
 			"SELECT name FROM sqlite_master WHERE type='table' AND name='" 
@@ -86,19 +86,15 @@ namespace simbat.technical
 				setupVersionHash();
 
 			processedVersions = GetVersions();
+			processedVersions.Sort();
 
-			/* What versions do we know about */
-			foreach(long k in processedVersions)
+			foreach(var kv in mVersions)
 			{
-				if (!mVersions.ContainsKey(k))
-					toAlter.Add(k);
-			}
-
-			toAlter.Sort();
-
-			foreach(long id in toAlter)
-			{
-				mVersions[id].run ();
+				if (!processedVersions.Contains(kv.Key))
+				{
+					kv.Value.run ();
+					insertVersion(kv.Key);
+				}
 			}
 
 			/* No longer need */
@@ -173,7 +169,7 @@ namespace simbat.technical
 
 			while(reader.Read())
 			{
-				versions.Add(long.Parse(reader.GetString(0)));
+				versions.Add(reader.GetInt32(0));
 			}
 
 			return versions;
@@ -203,6 +199,7 @@ namespace simbat.technical
 		/// </param>
 		private static void insertVersion(long iVersion)
 		{
+			Console.WriteLine("TRY TO INSERT");
 			IDbCommand command; 
 			IDbDataParameter parameter; 
 
@@ -212,19 +209,21 @@ namespace simbat.technical
 				.CreateCommand();
 
 			command.CommandText = INSERT;
+			command.Prepare();
 
 			parameter =  command.CreateParameter(); 
 			parameter.ParameterName = "@given_version_number"; 
 			parameter.Value = iVersion;
 			command.Parameters.Add (parameter);
 
+
 			parameter = command.CreateParameter();
 			parameter.ParameterName = "@given_timestamp"; 
 			parameter.Value = (DateTime.UtcNow - new DateTime(1970,1,1,0,0,0)).TotalSeconds;
 			command.Parameters.Add (parameter);
 
-			command.Prepare();
 			command.ExecuteNonQuery();
+
 		}
 		#endregion
 	}
