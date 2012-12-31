@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{86203A2B-5A65-49D6-A90F-9D2924213B0E}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>simbat</RootNamespace>
+    <AssemblyName>simbat</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <Externalconsole>true</Externalconsole>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <Externalconsole>true</Externalconsole>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="Mono.Data.Sqlite" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="domain\organic\Entity.cs" />
+    <Compile Include="domain\organic\Human.cs" />
+    <Compile Include="domain\organic\Demon.cs" />
+    <Compile Include="domain\mappers\EntityMapper.cs" />
+    <Compile Include="datasource\EntityTDG.cs" />
+    <Compile Include="datasource\DbRegistry.cs" />
+    <Compile Include="presentation\CLInterface.cs" />
+    <Compile Include="presentation\CommandParser.cs" />
+    <Compile Include="technical\TableManager.cs" />
+    <Compile Include="technical\DatabaseCommands\DatabaseCommand0001.cs" />
+    <Compile Include="technical\DatabaseCommands\DatabaseCommand.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="domain\" />
+    <Folder Include="domain\commands\" />
+    <Folder Include="datasource\" />
+    <Folder Include="presentation\" />
+    <Folder Include="domain\mappers\" />
+    <Folder Include="technical\" />
+    <Folder Include="technical\DatabaseCommands\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
+  </ItemGroup>
+</Project>

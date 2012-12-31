@@ -1,0 +1,35 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="simbat/datasource/EntityTDG.cs">
+    <Files>
+      <File FileName="simbat/datasource/EntityTDG.cs" Line="125" Column="5" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="simbat" expanded="True">
+            <Node name="References" expanded="True" />
+            <Node name="datasource" expanded="True">
+              <Node name="EntityTDG.cs" selected="True" />
+            </Node>
+            <Node name="domain" expanded="True">
+              <Node name="mappers" expanded="True" />
+              <Node name="organic" expanded="True" />
+            </Node>
+            <Node name="presentation" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
