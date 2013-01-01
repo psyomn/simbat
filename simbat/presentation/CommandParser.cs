@@ -1,6 +1,6 @@
 using System;
 
-namespace simbat
+namespace simbat.domain
 {
 	public class CommandParser
 	{

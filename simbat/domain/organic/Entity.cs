@@ -1,6 +1,6 @@
 using System;
 
-namespace simbat
+namespace simbat.domain
 {
 	/// <summary>
 	/// Entity. Try keeping the data stuff here so that we do the least
@@ -24,18 +24,50 @@ namespace simbat
 		#endregion
 
 		/// <summary>
+		/// Default initializer
 		/// Initializes a new instance of the <see cref="simbat.Entity"/> class.
 		/// </summary>
 		public Entity ()
 		{
-			Random rand = new Random();
-			mDistortion = (float) rand.NextDouble() % 100;
+			mDistortion = (float) mRand.NextDouble() % 100;
 			mHealth     = 10; 
 			mStrength   = 1;
 			mArmor      = 1; 
 			mSpeed      = 1;
 			mName       = "Default";
 			mState      = STATE.ALIVE;
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="simbat.Entity"/> class.
+		/// </summary>
+		/// <param name='iID'>
+		/// I I.
+		/// </param>
+		/// <param name='iName'>
+		/// I name.
+		/// </param>
+		/// <param name='iStrenght'>
+		/// I strenght.
+		/// </param>
+		/// <param name='iArmor'>
+		/// I armor.
+		/// </param>
+		/// <param name='iSpeed'>
+		/// I speed.
+		/// </param>
+		/// <param name='iDistortion'>
+		/// I distortion.
+		/// </param>
+		public Entity(UInt32 iID, String iName, int iStrength, int iArmor, 
+		              int iSpeed, float iDistortion)
+		{
+			mID         = iID; 
+			mName       = iName;
+			mStrength   = iStrength;
+			mArmor      = iArmor;
+			mSpeed      = iSpeed;
+			mDistortion = iDistortion;
 		}
 
 		/// <summary>
@@ -110,6 +142,14 @@ namespace simbat
 				mName = value;
 			}
 		}
+
+		public override string ToString ()
+		{
+			return string.Format 
+				("[Entity: Strength={0}, Health={1}, Armor={2}, Speed={3}, Name={4}]", 
+                  Strength, Health, Armor, Speed, Name);
+		}
+
 		#endregion 
 	}
 }

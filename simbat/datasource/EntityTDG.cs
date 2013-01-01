@@ -9,13 +9,16 @@ namespace simbat.datasource
 
 	/// <summary>
 	/// Entity TDG.
+	/// 
+	/// One thing I never liked TDGs the classic way was that they 
+	/// pass a reader back to mappers. I might benchmark something
+	/// later and see if passing back just tuples would be wiser.
 	/// </summary>
 	public class EntityTDG
 	{
 		#region SQL 
-
 		private static string TABLE_NAME = 
-				"entities";
+			"entities";
 
 		private static string SELECT_ALL = 
 			"SELECT * FROM " + TABLE_NAME + "; ";
@@ -32,7 +35,6 @@ namespace simbat.datasource
 		private static string DELETE = 
 			"DELETE FROM " + TABLE_NAME 
 			+ " WHERE id=?";
-
 		#endregion
 
 		/// <summary>

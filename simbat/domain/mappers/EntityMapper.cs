@@ -1,7 +1,11 @@
 using System;
+using System.Data;
 using System.Collections.Generic;
 
-namespace simbat
+/* User */
+using simbat.datasource;
+
+namespace simbat.domain
 {
 	/// <summary>
 	/// Entity mapper.
@@ -20,7 +24,24 @@ namespace simbat
 		/// </returns>
 		public static List<Entity> findAll()
 		{
-			return null;
+			Entity ent = null;
+			List<Entity> entities = new List<Entity>();
+			IDataReader reader = null; 
+
+			reader = EntityTDG.findAll();
+
+			while(reader.Read())
+			{
+				ent = 
+					new Entity(
+						 (UInt32)reader.GetInt32(0), reader.GetString(1),
+		                 reader.GetInt32(2), reader.GetInt32(3),
+		                 reader.GetInt32(4), reader.GetFloat(5));
+
+				entities.Add(ent);
+			}
+
+			return entities;
 		}
 
 		/// <summary>

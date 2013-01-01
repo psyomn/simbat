@@ -2,6 +2,7 @@ using System;
 
 /* User */
 using simbat.technical;
+using simbat.domain;
 
 namespace simbat
 {
@@ -11,6 +12,11 @@ namespace simbat
 		{
 			Console.WriteLine ("Hello World!");
 			TableManager.run();
+
+			foreach (var e in EntityMapper.findAll())
+			{
+				Console.WriteLine(e);
+			}
 		}
 	}
 }

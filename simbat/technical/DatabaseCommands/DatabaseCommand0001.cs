@@ -21,8 +21,10 @@ namespace simbat.technical.dbcommands
 			+ "strength   int,"
 			+ "armor      int,"
 			+ "speed      int,"
-			+ "distortion float"
+			+ "distortion float," 
+			+ "type       int"
 			+ "); ";
+
 		/// <summary>
 		/// The identifier. Should match the class name.
 		/// </summary>

@@ -70,7 +70,6 @@ namespace simbat.technical
 		public static void run()
 		{
 			List<long> processedVersions = null; 
-			List<long> toAlter = new List<long>();
 
 			if (tableManagerExists())
 			{

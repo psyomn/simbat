@@ -1,6 +1,6 @@
 using System;
 
-namespace simbat
+namespace simbat.presentation
 {
 	public class CLInterface
 	{

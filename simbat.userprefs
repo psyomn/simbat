@@ -1,22 +1,23 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="simbat/datasource/EntityTDG.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="simbat/technical/TableManager.cs">
     <Files>
-      <File FileName="simbat/datasource/EntityTDG.cs" Line="125" Column="5" />
+      <File FileName="simbat/technical/TableManager.cs" Line="138" Column="4" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="simbat" expanded="True">
-            <Node name="References" expanded="True" />
-            <Node name="datasource" expanded="True">
-              <Node name="EntityTDG.cs" selected="True" />
-            </Node>
+            <Node name="datasource" expanded="True" />
             <Node name="domain" expanded="True">
               <Node name="mappers" expanded="True" />
               <Node name="organic" expanded="True" />
             </Node>
             <Node name="presentation" expanded="True" />
+            <Node name="technical" expanded="True">
+              <Node name="DatabaseCommands" expanded="True" />
+              <Node name="TableManager.cs" selected="True" />
+            </Node>
           </Node>
         </State>
       </Pad>
