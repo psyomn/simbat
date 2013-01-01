@@ -50,6 +50,7 @@
     <Compile Include="technical\TableManager.cs" />
     <Compile Include="technical\DatabaseCommands\DatabaseCommand0001.cs" />
     <Compile Include="technical\DatabaseCommands\DatabaseCommand.cs" />
+    <Compile Include="domain\organic\EntityType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

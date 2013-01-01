@@ -7,7 +7,9 @@ namespace simbat.domain
 	/// </summary>
 	public class Demon : Entity
 	{
-		public Demon ()
+		public Demon (UInt32 iID, String iName, int iStrength, int iArmor, 
+		              int iSpeed, float iDistortion, STATE iState) : 
+					  base (iID,iName,iStrength,iArmor,iSpeed,iDistortion,iState)
 		{
 		}
 	}

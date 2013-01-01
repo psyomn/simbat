@@ -27,17 +27,32 @@ namespace simbat.domain
 			Entity ent = null;
 			List<Entity> entities = new List<Entity>();
 			IDataReader reader = null; 
+			int type = 0; 
 
 			reader = EntityTDG.findAll();
 
 			while(reader.Read())
 			{
-				ent = 
-					new Entity(
-						 (UInt32)reader.GetInt32(0), reader.GetString(1),
-		                 reader.GetInt32(2), reader.GetInt32(3),
-		                 reader.GetInt32(4), reader.GetFloat(5));
+				type = reader.GetInt32(6);
 
+				switch(type){
+				case (int) EntityType.HUMAN:
+				ent = 
+					new Human(
+					 (UInt32)reader.GetInt32(0), reader.GetString(1),
+	                 reader.GetInt32(2), reader.GetInt32(3),
+	                 reader.GetInt32(4), reader.GetFloat(5),
+					 (Entity.STATE) reader.GetInt32(6));
+					break;
+				case (int) EntityType.DEMON:
+				ent = 
+					new Demon(
+					 (UInt32)reader.GetInt32(0), reader.GetString(1),
+	                 reader.GetInt32(2), reader.GetInt32(3),
+	                 reader.GetInt32(4), reader.GetFloat(5),
+					 (Entity.STATE) reader.GetInt32(6));
+					break;
+				}
 				entities.Add(ent);
 			}
 
@@ -88,6 +103,11 @@ namespace simbat.domain
 		public static void insert(Entity t)
 		{
 
+		}
+
+		public static UInt32 getMaxID()
+		{
+			return 0; // TODO
 		}
 	}
 }

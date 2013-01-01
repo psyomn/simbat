@@ -19,7 +19,7 @@ namespace simbat.domain
 		protected float  mDistortion; 
 		protected static Random mRand = new Random();
 		protected String mName;
-		protected enum   STATE {ALIVE, BLOODY, DEAD};
+		public    enum   STATE {ALIVE, BLOODY, DEAD};
 		protected STATE  mState;
 		#endregion
 
@@ -60,7 +60,7 @@ namespace simbat.domain
 		/// I distortion.
 		/// </param>
 		public Entity(UInt32 iID, String iName, int iStrength, int iArmor, 
-		              int iSpeed, float iDistortion)
+		              int iSpeed, float iDistortion, STATE iState)
 		{
 			mID         = iID; 
 			mName       = iName;
@@ -68,6 +68,7 @@ namespace simbat.domain
 			mArmor      = iArmor;
 			mSpeed      = iSpeed;
 			mDistortion = iDistortion;
+			mState      = iState;
 		}
 
 		/// <summary>
@@ -143,11 +144,21 @@ namespace simbat.domain
 			}
 		}
 
+		public STATE State
+		{
+			get{
+				return mState;
+			}
+			set{
+				mState = value;
+			}
+		}
+
 		public override string ToString ()
 		{
 			return string.Format 
-				("[Entity: Strength={0}, Health={1}, Armor={2}, Speed={3}, Name={4}]", 
-                  Strength, Health, Armor, Speed, Name);
+				("[Entity: Strength={0}, Health={1}, Armor={2}, Speed={3}, Name={4}, Type={5}, State={6}]", 
+                  Strength, Health, Armor, Speed, Name, this.GetType().Name, mState);
 		}
 
 		#endregion 

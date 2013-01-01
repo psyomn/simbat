@@ -16,13 +16,14 @@ namespace simbat.technical.dbcommands
 		#region SQL 
 		private static string CREATE = 
 			"CREATE TABLE entities ("
-		    + "id         long,"
+		    + "id         long auto_increment,"
 			+ "name       varchar(50),"
 			+ "strength   int,"
 			+ "armor      int,"
 			+ "speed      int,"
 			+ "distortion float," 
-			+ "type       int"
+			+ "type       int," 
+			+ "state      int"
 			+ "); ";
 
 		/// <summary>

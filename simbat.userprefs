@@ -1,9 +1,6 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="simbat/technical/TableManager.cs">
-    <Files>
-      <File FileName="simbat/technical/TableManager.cs" Line="138" Column="4" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
@@ -11,12 +8,13 @@
             <Node name="datasource" expanded="True" />
             <Node name="domain" expanded="True">
               <Node name="mappers" expanded="True" />
-              <Node name="organic" expanded="True" />
+              <Node name="organic" expanded="True">
+                <Node name="Entity.cs" selected="True" />
+              </Node>
             </Node>
             <Node name="presentation" expanded="True" />
             <Node name="technical" expanded="True">
               <Node name="DatabaseCommands" expanded="True" />
-              <Node name="TableManager.cs" selected="True" />
             </Node>
           </Node>
         </State>
