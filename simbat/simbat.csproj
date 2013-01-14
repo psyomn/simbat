@@ -52,6 +52,7 @@
     <Compile Include="technical\DatabaseCommands\DatabaseCommand.cs" />
     <Compile Include="domain\organic\EntityType.cs" />
     <Compile Include="technical\DatabaseCommands\DatabaseCommand0002.cs" />
+    <Compile Include="datasource\CommonTDG.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

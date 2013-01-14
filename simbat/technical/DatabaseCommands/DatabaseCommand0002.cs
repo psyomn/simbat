@@ -16,6 +16,20 @@ namespace simbat.technical.dbcommands
 		{
 
 		}
+
+		#region implemented abstract members of simbat.technical.dbcommands.DatabaseCommand
+		public override void run ()
+		{
+			long lastid = 0;
+
+			lastid = EntityTDG.getMaxID("entities") + 1;
+			EntityTDG.insert(lastid, "John Asleworth", 1, 1, 1, 0.12f, "HUMAN");
+			++lastid;
+			EntityTDG.insert(lastid, "Oobloth Gorg", 2,3,2,0.32f,"DEMON");
+			++lastid;
+		}
+		#endregion
+
 	}
 }
 

@@ -113,6 +113,7 @@ namespace simbat.technical
 			mVersions = new Dictionary<long,DatabaseCommand>(); 
 
 			mVersions[1] = new DatabaseCommand0001();
+			mVersions[2] = new DatabaseCommand0002();
 		}
 
 		/// <summary>

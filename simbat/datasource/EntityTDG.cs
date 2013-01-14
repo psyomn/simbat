@@ -14,7 +14,7 @@ namespace simbat.datasource
 	/// pass a reader back to mappers. I might benchmark something
 	/// later and see if passing back just tuples would be wiser.
 	/// </summary>
-	public class EntityTDG
+	public class EntityTDG : CommonTDG
 	{
 		#region SQL 
 		private static string TABLE_NAME = 
