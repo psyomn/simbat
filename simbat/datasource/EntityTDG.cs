@@ -80,6 +80,40 @@ namespace simbat.datasource
 			var distortionParameter = command.CreateParameter();
 			var entityTypeParameter = command.CreateParameter();
 
+			/* Create parameters */
+			idParameter.ParameterName = "@given_id"; 
+			idParameter.Value = iID;
+
+			nameParameter.ParameterName = "@given_name";
+			nameParameter.Value = iName;
+
+			strengthParameter.ParameterName = "@given_strength";
+			strengthParameter.Value = iStrength;
+
+			armorParameter.ParameterName = "@given_armor";
+			armorParameter.Value = iArmor;
+
+			speedParameter.ParameterName = "@given_speed";
+			speedParameter.Value = iSpeed;
+
+			distortionParameter.ParameterName = "@given_distortion";
+			distortionParameter.Value = iDistortion;
+
+			entityTypeParameter.ParameterName = "@given_entity_type";
+			entityTypeParameter.Value = iEntityType;
+
+			/* Bind parameters to command */
+			command.CommandText = INSERT;
+			command.Parameters.Add (idParameter);
+			command.Parameters.Add (nameParameter);
+			command.Parameters.Add (strengthParameter);
+			command.Parameters.Add (armorParameter);
+			command.Parameters.Add (speedParameter);
+			command.Parameters.Add (distortionParameter);
+			command.Parameters.Add (entityTypeParameter);
+			command.Prepare();
+
+			command.ExecuteNonQuery();
 		}
 
 		/// <summary>
