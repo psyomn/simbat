@@ -154,6 +154,12 @@ namespace simbat.domain
 			}
 		}
 
+		/// <summary>
+		/// Returns a <see cref="System.String"/> that represents the current <see cref="simbat.domain.Entity"/>.
+		/// </summary>
+		/// <returns>
+		/// A <see cref="System.String"/> that represents the current <see cref="simbat.domain.Entity"/>.
+		/// </returns>
 		public override string ToString ()
 		{
 			return string.Format 

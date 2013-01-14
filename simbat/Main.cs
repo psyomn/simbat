@@ -6,6 +6,10 @@ using simbat.domain;
 
 namespace simbat
 {
+	/// <summary>
+	/// Main class.
+	/// </summary>
+	/// 
 	class MainClass
 	{
 		public static void Main (string[] args)

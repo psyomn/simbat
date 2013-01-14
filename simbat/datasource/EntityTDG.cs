@@ -28,8 +28,8 @@ namespace simbat.datasource
 
 		private static string INSERT = 
 			"INSERT INTO " + TABLE_NAME
-			+ "(name,strength,armor,speed,distortion,entity_type)"
-			+ " VALUES (@given_name,@given_strength,@given_armor," 
+			+ "(id,name,strength,armor,speed,distortion,entity_type)"
+			+ " VALUES (@given_id,@given_name,@given_strength,@given_armor," 
 			+ " @given_speed,@given_distortion,@given_entity_type);";
 
 		private static string DELETE = 
@@ -66,10 +66,20 @@ namespace simbat.datasource
 		/// <param name='distortion'>
 		/// Distortion.
 		/// </param>
-		public static void insert(long id, String name, 
-		                          int strength, int armor, 
-		                          int speed, float distortion)
+		public static void insert(long iID, String iName, int iStrength, int iArmor, 
+		                          int iSpeed, float iDistortion, String iEntityType)
 		{
+			IDbCommand command;
+			command = DbRegistry.Instance.Connection.CreateCommand();
+
+			var idParameter         = command.CreateParameter();
+			var nameParameter       = command.CreateParameter();
+			var strengthParameter   = command.CreateParameter();
+			var armorParameter      = command.CreateParameter();
+			var speedParameter      = command.CreateParameter();
+			var distortionParameter = command.CreateParameter();
+			var entityTypeParameter = command.CreateParameter();
+
 		}
 
 		/// <summary>
@@ -105,9 +115,8 @@ namespace simbat.datasource
 		/// <param name='iDistortion'>
 		/// I distortion.
 		/// </param>
-		public static int update(long iID, String iName, 
-		                         int iStrength, int iArmor, 
-		                         int iSpeed, float iDistortion)
+		public static int update(long iID, String iName, int iStrength, int iArmor, 
+		                         int iSpeed, float iDistortion, String iEntityType)
 		{
 			int rowsAffected = 0; 
 
