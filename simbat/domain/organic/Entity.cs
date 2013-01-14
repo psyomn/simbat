@@ -88,9 +88,25 @@ namespace simbat.domain
 		/// <param name='iDamage'>
 		/// I damage.
 		/// </param>
-		public void receiveDamage(int iDamage)
+		public void receiveDamage (int iDamage)
 		{
-			/// TODO finish this
+			int total = iDamage;
+
+			total -= (mRand.Next () % 2 == 0 ? 0 : mDistortion);
+
+			if (total > 0) 
+			{
+				if (total < mHealth)
+					mHealth -= total;
+				else 
+				{
+					mHealth = 0;
+					mState = STATE.DEAD;
+				}
+			}
+
+			if (mHealth < mHealth * 0.6)
+				mState = STATE.BLOODY;
 		}
 
 		#region Mutators
