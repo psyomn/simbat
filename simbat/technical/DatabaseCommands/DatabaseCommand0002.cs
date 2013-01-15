@@ -20,6 +20,7 @@ namespace simbat.technical.dbcommands
 		#region implemented abstract members of simbat.technical.dbcommands.DatabaseCommand
 		public override void run ()
 		{
+			Console.WriteLine(":: Adding basic entities to db...");
 			long lastid = 0;
 
 			lastid = EntityTDG.getMaxID("entities") + 1;

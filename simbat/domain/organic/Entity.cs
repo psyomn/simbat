@@ -60,7 +60,7 @@ namespace simbat.domain
 		/// I distortion.
 		/// </param>
 		public Entity(UInt32 iID, String iName, int iStrength, int iArmor, 
-		              int iSpeed, float iDistortion, STATE iState)
+		              int iSpeed, float iDistortion)
 		{
 			mID         = iID; 
 			mName       = iName;
@@ -68,7 +68,6 @@ namespace simbat.domain
 			mArmor      = iArmor;
 			mSpeed      = iSpeed;
 			mDistortion = iDistortion;
-			mState      = iState;
 		}
 
 		/// <summary>
@@ -88,25 +87,9 @@ namespace simbat.domain
 		/// <param name='iDamage'>
 		/// I damage.
 		/// </param>
-		public void receiveDamage (int iDamage)
+		public void receiveDamage(int iDamage)
 		{
-			int total = iDamage;
-
-			total -= (mRand.Next () % 2 == 0 ? 0 : mDistortion);
-
-			if (total > 0) 
-			{
-				if (total < mHealth)
-					mHealth -= total;
-				else 
-				{
-					mHealth = 0;
-					mState = STATE.DEAD;
-				}
-			}
-
-			if (mHealth < mHealth * 0.6)
-				mState = STATE.BLOODY;
+			/// TODO finish this
 		}
 
 		#region Mutators
@@ -170,12 +153,6 @@ namespace simbat.domain
 			}
 		}
 
-		/// <summary>
-		/// Returns a <see cref="System.String"/> that represents the current <see cref="simbat.domain.Entity"/>.
-		/// </summary>
-		/// <returns>
-		/// A <see cref="System.String"/> that represents the current <see cref="simbat.domain.Entity"/>.
-		/// </returns>
 		public override string ToString ()
 		{
 			return string.Format 

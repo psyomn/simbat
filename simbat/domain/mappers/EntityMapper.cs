@@ -27,30 +27,28 @@ namespace simbat.domain
 			Entity ent = null;
 			List<Entity> entities = new List<Entity>();
 			IDataReader reader = null; 
-			int type = 0; 
+			String type;
 
 			reader = EntityTDG.findAll();
 
 			while(reader.Read())
 			{
-				type = reader.GetInt32(6);
+				type = reader.GetString(6);
 
 				switch(type){
-				case (int) EntityType.HUMAN:
+				case "HUMAN":
 				ent = 
 					new Human(
 					 (UInt32)reader.GetInt32(0), reader.GetString(1),
 	                 reader.GetInt32(2), reader.GetInt32(3),
-	                 reader.GetInt32(4), reader.GetFloat(5),
-					 (Entity.STATE) reader.GetInt32(6));
+	                 reader.GetInt32(4), reader.GetFloat(5));
 					break;
-				case (int) EntityType.DEMON:
+				case "DEMON":
 				ent = 
 					new Demon(
 					 (UInt32)reader.GetInt32(0), reader.GetString(1),
 	                 reader.GetInt32(2), reader.GetInt32(3),
-	                 reader.GetInt32(4), reader.GetFloat(5),
-					 (Entity.STATE) reader.GetInt32(6));
+	                 reader.GetInt32(4), reader.GetFloat(5));
 					break;
 				}
 				entities.Add(ent);

@@ -8,8 +8,8 @@ namespace simbat.domain
 	public class Demon : Entity
 	{
 		public Demon (UInt32 iID, String iName, int iStrength, int iArmor, 
-		              int iSpeed, float iDistortion, STATE iState) : 
-					  base (iID,iName,iStrength,iArmor,iSpeed,iDistortion,iState)
+		              int iSpeed, float iDistortion) : 
+					  base (iID,iName,iStrength,iArmor,iSpeed,iDistortion)
 		{
 		}
 	}

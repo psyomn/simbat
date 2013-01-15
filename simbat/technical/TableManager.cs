@@ -199,7 +199,7 @@ namespace simbat.technical
 		/// </param>
 		private static void insertVersion(long iVersion)
 		{
-			Console.WriteLine("TRY TO INSERT");
+			Console.WriteLine("Updating table manager versions... [{0}]", iVersion);
 			IDbCommand command; 
 			IDbDataParameter parameter; 
 

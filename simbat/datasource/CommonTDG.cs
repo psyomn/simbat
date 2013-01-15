@@ -35,12 +35,19 @@ namespace simbat.datasource
 			long retId = -1; 
 
 			command = DbRegistry.Instance.Connection.CreateCommand ();
-			command.CommandText = SELECT_MAXID;
+			command.CommandText = genericQuery;
+			command.Prepare();
 			reader = command.ExecuteReader ();
 
 			while (reader.Read())
 			{
-				retId = reader.GetInt32(0);
+				try{
+					retId = reader.GetInt32(0);
+				}
+				catch(Exception e)
+				{
+					retId = -1;
+				}
 			}
 
 			return retId;

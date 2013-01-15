@@ -28,9 +28,9 @@ namespace simbat.datasource
 
 		private static string INSERT = 
 			"INSERT INTO " + TABLE_NAME
-			+ "(id,name,strength,armor,speed,distortion,entity_type)"
+			+ "(id,name,strength,armor,speed,distortion,type)"
 			+ " VALUES (@given_id,@given_name,@given_strength,@given_armor," 
-			+ " @given_speed,@given_distortion,@given_entity_type);";
+			+ " @given_speed,@given_distortion,@given_type);";
 
 		private static string DELETE = 
 			"DELETE FROM " + TABLE_NAME 
@@ -99,7 +99,7 @@ namespace simbat.datasource
 			distortionParameter.ParameterName = "@given_distortion";
 			distortionParameter.Value = iDistortion;
 
-			entityTypeParameter.ParameterName = "@given_entity_type";
+			entityTypeParameter.ParameterName = "@given_type";
 			entityTypeParameter.Value = iEntityType;
 
 			/* Bind parameters to command */
