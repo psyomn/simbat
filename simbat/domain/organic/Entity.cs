@@ -19,7 +19,7 @@ namespace simbat.domain
 		protected float  mDistortion; 
 		protected static Random mRand = new Random();
 		protected String mName;
-		public    enum   STATE {ALIVE, BLOODY, DEAD};
+		public    enum   STATE {ALIVE, ANGERED, DEAD};
 		protected STATE  mState;
 		#endregion
 
@@ -103,6 +103,12 @@ namespace simbat.domain
 			}
 		}
 
+		/// <summary>
+		/// Gets or sets the health. This is the total health of the entity.
+		/// </summary>
+		/// <value>
+		/// The health.
+		/// </value>
 		public int Health
 		{
 			get{
@@ -113,6 +119,14 @@ namespace simbat.domain
 			}
 		}
 
+		/// <summary>
+		/// TODO
+		/// Gets or sets the armor. The armor is the combination
+		/// of the equipment worn + the actual entities resistance.
+		/// </summary>
+		/// <value>
+		/// The armor.
+		/// </value>
 		public int Armor
 		{
 			get{
@@ -123,6 +137,12 @@ namespace simbat.domain
 			}
 		}
 
+		/// <summary>
+		/// Gets or sets the speed. Speed is used for turns.
+		/// </summary>
+		/// <value>
+		/// The speed.
+		/// </value>
 		public int Speed
 		{
 			get{
@@ -133,6 +153,13 @@ namespace simbat.domain
 			}
 		}
 
+		/// <summary>
+		/// Gets or sets the name. A name is a common name (both first and 
+		/// last name are combined to one field). 
+		/// </summary>
+		/// <value>
+		/// The name.
+		/// </value>
 		public String Name
 		{
 			get{
@@ -143,6 +170,13 @@ namespace simbat.domain
 			}
 		}
 
+		/// <summary>
+		/// Gets or sets the state of the current entity. This is for states such
+		/// as {Alive, Dead, Angered}.
+		/// </summary>
+		/// <value>
+		/// The state.
+		/// </value>
 		public STATE State
 		{
 			get{
@@ -156,8 +190,8 @@ namespace simbat.domain
 		public override string ToString ()
 		{
 			return string.Format 
-				("[Entity: Strength={0}, Health={1}, Armor={2}, Speed={3}, Name={4}, Type={5}, State={6}]", 
-                  Strength, Health, Armor, Speed, Name, this.GetType().Name, mState);
+				("[Entity: Strength={0}, Health={1}, Armor={2}, Speed={3}, Name={4}, Type={5}, State={6}, Distortion={7}]", 
+                  Strength, Health, Armor, Speed, Name, this.GetType().Name, mState, mDistortion);
 		}
 
 		#endregion 
