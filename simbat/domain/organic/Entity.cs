@@ -11,6 +11,10 @@ namespace simbat.domain
 	public class Entity
 	{
 		#region Member Variables
+		/// <summary>
+		/// The ID. NB: this is set and manipulated only by the mapper.
+		/// (don't mess with it).
+		/// </summary>
 		protected UInt32 mID;
 		protected int    mHealth;
 		protected int    mStrength;
