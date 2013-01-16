@@ -53,6 +53,9 @@
     <Compile Include="domain\organic\EntityType.cs" />
     <Compile Include="datasource\CommonTDG.cs" />
     <Compile Include="technical\DatabaseCommands\DatabaseCommand0002.cs" />
+    <Compile Include="domain\item\IConsumable.cs" />
+    <Compile Include="domain\item\IEquipable.cs" />
+    <Compile Include="domain\item\PropertyEnum.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -63,6 +66,7 @@
     <Folder Include="domain\mappers\" />
     <Folder Include="technical\" />
     <Folder Include="technical\DatabaseCommands\" />
+    <Folder Include="domain\item\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
